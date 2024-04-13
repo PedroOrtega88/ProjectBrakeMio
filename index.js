@@ -1,17 +1,19 @@
-const express = require('express')
-const dbConnection = require('./config/config')
-const app = express()
-require('dotenv').config()
+const express = require('express');
+const dbConnection = require('./config/config');
+const routes = require('./routes/routeProduct');
+require('dotenv').config();
 
 
-const PORT= process.env.PORT || 3000
-const routes = require('./routes/routeProduct')
+ 
+const app = express();
+const PORT= process.env.PORT || 3000;
 
 
 
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use('/', routes);
 
 

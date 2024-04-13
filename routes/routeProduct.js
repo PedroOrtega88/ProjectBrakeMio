@@ -1,10 +1,10 @@
 const express = require ('express')
 const router = express.Router()
-const routeProduct = require ('../models/Products')
+const Products = require('../models/Products.js')
+const ProductController= require('../controllers/ProductController')
 
 
-router.get('/',(req, res) => (res.send('estamos dentro de las rutas')))
-
+router.post('/create', ProductController.create);
 
 
 
