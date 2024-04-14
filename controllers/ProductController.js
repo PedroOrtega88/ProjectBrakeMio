@@ -48,28 +48,59 @@ const ProductController ={
             const id = req.params._id;
             const product = await Products.findById(id);
             if (!product) {
-                return res.status(404).json({ error: 'Producto no encontrado' });
+                return res.status(404).json({ error: 'Product not found' });
             }
             res.json(product);
         } catch (error) {
             console.log(error);
-            res.status(500).json({ error: 'Hubo un problema al buscar el producto por su ID' });
+            res.status(500).json({ error: 'Problem to search the product by ID' });
         }
-    }
-
-
-
-      }
-   
-
-
-
-        
+    }, async updateByName(req, res) {
+        try {
+            const name = req.params.name;
+            const newName = req.body.newName;
+            const updatedProduct = await Products.findOneAndUpdate({ name }, { name: newName }, { new: true });
+            if (!updatedProduct) {
+                return res.status(404).json({ mensaje: 'Product not found' });
+            }
+            res.json(updatedProduct);
+        } catch (error) {
+            console.error('Error updating product by name:', error);
+        }   
+        },async updateByName(req, res) {
+            try {
+                const name = req.params.name;
+                const newName = req.body.newName;
+                const updatedProduct = await Products.findOneAndUpdate({ name }, { name: newName }, { new: true });
+                if (!updatedProduct) {
+                    return res.status(404).json({ mensaje: 'Product not found' });
+                }
+                res.json(updatedProduct);
+            } catch (error) {
+                console.error('Error updating product by name:', error);
+              
+            }
+        },
+    
+        async deleteProduct(req, res) {
+            try {
+                const _id = req.params.id;
+                const deletedProduct = await Products.findByIdAndDelete(_id);
+                if (!deletedProduct) {
+                    return res.status(404).json({ mensaje: 'Product not found' });
+                }
+                res.json({ mensaje: 'Product deleted', deletedProduct });
+            } catch (error) {
+                console.error('Error deleting product:', error);
+                
+            }
+        },
+    };
+    
+    module.exports = ProductController;
 
 
  
 
 
 
-
-module.exports = ProductController;
