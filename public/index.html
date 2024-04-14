@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Ropa</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav id="menu">
+    <div class="div1">
+      <div><a href="/productos">Productos</a></div>
+      <div><a href="/camisetas">Camisetas</a></div>
+      <div><a href="/pantalones">Pantalones</a></div>
+      <div><a href="/zapatos">Zapatos</a></div>
+      <div><a href="/accesorios">Accesorios</a></div>
+    </div>
+  </nav>
+  <h1>Productos</h1>
+  <div class="boxContainer0">
+    <div class="Zapatos">Zapatos
+      <button class="ver-button" onclick="redirectToPage('/pagina1.html')">Ver</button>
+    </div>
+    <div class="Pantalones">Pantalones
+      <button class="ver-button" onclick="redirectToPage('/pagina2.html')">Ver</button>
+    </div>
+    <div class="Accesorios">Gorras
+      <button class="ver-button" onclick="redirectToPage('/pagina3.html')">Ver</button>
+    </div>
+    <div class="Camisetas">Camisetas
+      <button class="ver-button" onclick="redirectToPage('/pagina4.html')">Ver</button>
+    </div>
+  </div>
+  <script>
+    function redirectToPage(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>

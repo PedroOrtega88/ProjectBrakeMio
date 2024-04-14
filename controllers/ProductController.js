@@ -113,8 +113,9 @@ const ProductController ={
             <input type="text" id="description" name="description"><br>
 
 
-            <label for="price">Precio:</label>
-            <input type="number" id="price" name="price" step="0.01" required>         <br>
+            <label for="price">Precio:</label><br>
+            <input type="number" id="price" name="price" step="0.01" required><br>
+            <br>
 
             <label for="category">Categoria:</label>
             <select id="category" name="category">           
