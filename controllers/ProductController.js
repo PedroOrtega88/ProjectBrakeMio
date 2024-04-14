@@ -94,8 +94,66 @@ const ProductController ={
                 console.error('Error deleting product:', error);
                 
             }
-        },
+        }, async renderCreateProductForm(req, res) {
+        try {
+            // Renderiza una vista que contenga el formulario para crear nuevos productos
+            res.render('createProductForm');
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Error al renderizar el formulario de creación de productos.' });
+        }
+    },showCreateForm: (req, res) => {
+        res.send(`
+          <form action="/products/new" method="POST">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name"><br>
+
+
+            <label for="description">Descripción:</label>
+            <input type="text" id="description" name="description"><br>
+
+
+            <label for="price">Precio:</label>
+            <input type="number" id="price" name="price" step="0.01" required>         <br>
+
+            <label for="category">Categoria:</label>
+            <select id="category" name="category">           
+           
+        <option value="Camisetas">Camisetas</option>
+        <option value="Pantalones">Pantalones</option>
+        <option value="Zapatos">Zapatos</option>
+        <option value="Accesorios">Accesorios</option>
+        <select>
+        <br>
+        <label for="size">Talla:</label>
+        <select id="size" name="size" required>
+        <option value="">Seleccione una talla</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select>
+    <br>
+
+            <button type="submit">Crear Producto</button>
+          </form>
+        `);
+      },
+    
+      createProduct: async (req, res) => {
+        try {
+          const { name, description, price } = req.body;
+          const newProduct = new Product({ name, description, price, category, size });
+          await newProduct.save();
+          res.status(201).json(newProduct)
+        } catch (error) {
+          console.error('Error al crear el producto:', error);
+          res.status(500).send('Hubo un problema al crear el producto');
+        }
+      }
     };
+
+    
     
     module.exports = ProductController;
 
