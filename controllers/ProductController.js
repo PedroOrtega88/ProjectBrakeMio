@@ -35,6 +35,8 @@ const ProductController ={
                     <p>Categoría: ${product.category}</p>
                     <p>Talla: ${product.size}</p>
                     <p>Precio: ${product.price}</p>
+                    <img src="${product.imageUrl}" alt="${product.name}">
+                    
                     <br> 
                 </div>`
                 )
@@ -96,7 +98,7 @@ const ProductController ={
             }
         }, async renderCreateProductForm(req, res) {
         try {
-            // Renderiza una vista que contenga el formulario para crear nuevos productos
+       
             res.render('createProductForm');
         } catch (error) {
             console.error(error);
